@@ -28,6 +28,8 @@ let typeDefs: any = [
 let resolvers = {
   Query: {
     clients: clientService.getAll,
+    incomes: incomeService.getAll,
+    incomesAllForCurrentClient: incomeService.getAllForCurrentClient,
   },
   Mutation: {
     userCreate: userService.create,

@@ -40,7 +40,7 @@ const createTables = () => {
     );
 
     CREATE TABLE IF NOT EXISTS expenses(
-      id SERIAL PRIMARY KEY,
+      id UUID PRIMARY KEY,
       value VARCHAR(128) NOT NULL,
       description VARCHAR(255),
       date DATE,
@@ -50,7 +50,7 @@ const createTables = () => {
     );
 
     CREATE TABLE IF NOT EXISTS incomes(
-      id SERIAL PRIMARY KEY,
+      id UUID PRIMARY KEY,
       value VARCHAR(128) NOT NULL,
       description VARCHAR(255),
       date DATE,

@@ -24,6 +24,7 @@ const clientService: any = {
     }
   `,
 
+  // Scoped by current User
   getAll: async () => {
     const queryString: string = `SELECT * FROM clients WHERE clients.user_id = '${config.fakeUserId}'`
 

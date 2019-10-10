@@ -18,15 +18,30 @@ const incomeService: any = {
 
     extend type Query {
       incomes: [Income]
+      incomesAllForCurrentClient(clientId: String): [Income]
     }
 
     extend type Mutation {
-      incomeCreate(name: String, value: String, description: String, date: String, client_id: String): Income!
+      incomeCreate(value: String, description: String, date: String, client_id: String): Income!
     }
   `,
 
+  // Scoped by current User
   getAll: async () => {
     const queryString: string = `SELECT * FROM incomes WHERE incomes.user_id = '${config.fakeUserId}'`
+
+    return db
+      .any(queryString)
+      .then((res: any) => res)
+      .catch((err: any) => err)
+  },
+
+  // Scoped by current User and current Client
+  getAllForCurrentClient: async (_: any, params: { clientId: string }) => {
+    const queryString: string = `SELECT * FROM incomes 
+      WHERE incomes.user_id = '${config.fakeUserId}' 
+      AND incomes.client_id = '${params.clientId}'
+    `
 
     return db
       .any(queryString)
