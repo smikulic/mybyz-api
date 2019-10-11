@@ -19,6 +19,16 @@ let typeDefs: any = [
   type Mutation {
     global: String
   }
+  type Income {
+    id: String,
+    value: String,
+    description: String,
+    date: String,
+    client_id: String,
+    user_id: String,
+    created_date: String,
+    modified_date: String,
+  }
   ${userService.typeDefs}
   ${clientService.typeDefs}
   ${incomeService.typeDefs}

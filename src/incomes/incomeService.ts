@@ -5,17 +5,6 @@ import config from '../utils/config'
 
 const incomeService: any = {
   typeDefs: `
-    type Income {
-      id: String,
-      value: String,
-      description: String,
-      date: String,
-      client_id: String,
-      user_id: String,
-      created_date: String,
-      modified_date: String,
-    }
-
     extend type Query {
       incomes: [Income]
       incomesAllForCurrentClient(clientId: String): [Income]
