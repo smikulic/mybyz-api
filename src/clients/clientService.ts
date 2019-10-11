@@ -14,6 +14,7 @@ const clientService: any = {
       status: String,
       user_id: String,
       clientIncomes: [Income],
+      totalIncome: String,
       created_date: String,
       modified_date: String,
     }
@@ -45,10 +46,21 @@ const clientService: any = {
           .any(queryString)
           .then((res: object[]) => {
             return res.map((client: any) => {
-              const clientIncomes = getAllIncomeResult.filter(
-                income => income.client_id === client.id
-              )
-              const updatedClient = { ...client, clientIncomes }
+              // const clientIncomes = getAllIncomeResult.filter(
+              //   income => income.client_id === client.id
+              // )
+              let totalIncome = 0
+              const clientIncomes = getAllIncomeResult.map(income => {
+                if (income.client_id === client.id) {
+                  totalIncome += parseInt(income.value, 10)
+                  return income
+                }
+              })
+              const updatedClient = {
+                ...client,
+                clientIncomes,
+                totalIncome: totalIncome.toString(),
+              }
 
               return updatedClient
             })
